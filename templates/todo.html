@@ -22,6 +22,7 @@
       {% for task in tasks %}
       <li data-id="{{ task.id }}" class="{{ task.status }}">
         <a href="/toggle/{{task.id}}">{{ task.title }}</a>
+        <a href="/remove/{{task.id}}">X</a>
       </li>
       {% endfor %}
     </ul>

@@ -24,3 +24,11 @@ def toggle_task(task_id):
             task.toggle()
             return redirect(url_for('main.todo'))
     return redirect(url_for('main.todo'))
+
+@main_blueprint.route('/remove/<int:task_id>')
+def remove(task_id):
+    for task in TASKS:
+        if task.id == task_id:
+            TASKS.remove(task)
+            return redirect(url_for('main.todo'))
+    return redirect(url_for('main.todo'))
