@@ -16,11 +16,13 @@
         </div>
     </form>
     
-    <ul id="task-list">
-      <li class="not-completed">test </li>
-      <li class="not-completed">test2</li>
-      <li class="completed">test3</li>
-    </ul>
+    <ul id="task-list"></ul>
+    {% for task in tasks: %}
+        <li class="{{ task.status }}">
+          <a href="/check/{{ task.id }}">{{ task.title }}</a>
+          <a href="/remove/{{ task.id }}" class="remove-btn">x</a>
+        </li>
+    {% endfor %}
   </div>
 
   <script src="todo-script.js"></script>
