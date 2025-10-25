@@ -1,35 +1,50 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask import request
-from task import Task
+from flask_login import login_required, current_user
+from models import db, Task, User
 
 # Create a blueprint
 main_blueprint = Blueprint('main', __name__)
 
-TASKS = []
 
 @main_blueprint.route('/', methods=['GET', 'POST'])
+@login_required
 def todo():
     if request.method == 'POST':
-        title = request.form.get('task-text')
-        priority = request.form.get('priority', 'low')  # Default to 'low' if not specified
-        if title:
-            TASKS.append(Task(title, priority))
+        task = request.form['task-text']
+        priority = request.form['priority']
+        print(task)
+        new_task = Task(title=task, user_id=current_user.id, priority=priority)
+        db.session.add(new_task)
+        db.session.commit()
 
-    return render_template('todo.html', tasks=TASKS)
+    tasks = Task.query.filter_by(user_id=current_user.id).all()
+    return render_template('todo.html', tasks=tasks)
 
 
-@main_blueprint.route('/toggle/<int:task_id>')
-def toggle_task(task_id):
-    for task in TASKS:
-        if task.id == task_id:
-            task.toggle()
-            return redirect(url_for('main.todo'))
+@main_blueprint.route('/check/<int:task_id>')
+@login_required
+def check(task_id):
+    task = Task.query.get(task_id)
+
+    if task is None:
+        return redirect(url_for('main.todo'))
+    
+    task.toggle()
+    db.session.commit()
+
     return redirect(url_for('main.todo'))
 
+
 @main_blueprint.route('/remove/<int:task_id>')
+@login_required
 def remove(task_id):
-    for task in TASKS:
-        if task.id == task_id:
-            TASKS.remove(task)
-            return redirect(url_for('main.todo'))
+    task = Task.query.get(task_id)
+
+    if task is None:
+        return redirect(url_for('main.todo'))
+
+    db.session.delete(task)
+    db.session.commit()
+
     return redirect(url_for('main.todo'))
