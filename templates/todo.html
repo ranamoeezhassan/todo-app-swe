@@ -14,14 +14,20 @@
     <form method="POST">
       <div class="input-section">
         <input type="text" id="new-task" name="task-text" placeholder="Add a new task..." />
+        <select name="priority" class="priority-selector">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
         <button id="add-task-btn">Add Task</button>
       </div>
     </form>
 
     <ul id="task-list">
       {% for task in tasks %}
-      <li data-id="{{ task.id }}" class="{{ task.status }}">
+      <li data-id="{{ task.id }}" class="{{ task.status }} priority-{{ task.priority }}">
         <a href="/toggle/{{task.id}}">{{ task.title }}</a>
+        <span class="priority-badge">{{ task.priority.title() }}</span>
         <a href="/remove/{{task.id}}">X</a>
       </li>
       {% endfor %}

@@ -11,8 +11,9 @@ TASKS = []
 def todo():
     if request.method == 'POST':
         title = request.form.get('task-text')
+        priority = request.form.get('priority', 'low')  # Default to 'low' if not specified
         if title:
-            TASKS.append(Task(title))
+            TASKS.append(Task(title, priority))
 
     return render_template('todo.html', tasks=TASKS)
 

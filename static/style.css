@@ -14,7 +14,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 400px;
   }
   
   h1 {
@@ -66,5 +66,52 @@ body {
   li.completed {
     text-decoration: line-through;
     color: #aaa;
+  }
+  
+  /* Priority Styling */
+  .priority-high {
+    border-left: 5px solid #dc3545;
+    background-color: #f8d7da;
+  }
+  
+  .priority-medium {
+    border-left: 5px solid #ffc107;
+    background-color: #fff3cd;
+  }
+  
+  .priority-low {
+    border-left: 5px solid #28a745;
+    background-color: #d4edda;
+  }
+  
+  .priority-selector {
+    margin-left: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+  }
+  
+  .priority-badge {
+    font-size: 0.8em;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 10px;
+    font-weight: bold;
+  }
+  
+  .priority-high .priority-badge {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .priority-medium .priority-badge {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  
+  .priority-low .priority-badge {
+    background-color: #28a745;
+    color: white;
   }
   
