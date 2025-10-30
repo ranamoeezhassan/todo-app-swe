@@ -26,15 +26,18 @@
     <ul id="task-list">
       {% for task in tasks %}
       <li data-id="{{ task.id }}" class="{{ task.status }} priority-{{ task.priority }}">
-        <a href="/toggle/{{task.id}}">{{ task.title }}</a>
-        <span class="priority-badge">{{ task.priority.title() }}</span>
-        <a href="/remove/{{task.id}}">X</a>
+        <a class="task-title" href="/check/{{task.id}}">{{ task.title }}</a>
+        <div class="task-actions">
+          <span class="priority-badge">{{ task.priority }}</span>
+          <a href="#" class="edit-btn" onclick="editTask({{ task.id }}); return false;" title="Edit task">✏️</a>
+          <a href="/remove/{{task.id}}" title="Delete task">X</a>
+        </div>
       </li>
       {% endfor %}
     </ul>
   </div>
 
-  <script src="todo-script.js"></script>
+  <script src="{{ url_for('static', filename='todo.js') }}"></script>
 </body>
 
 </html>

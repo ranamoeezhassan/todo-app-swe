@@ -61,6 +61,25 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
+    min-height: 40px;
+  }
+
+  .task-title {
+    flex: 1;
+    text-decoration: none;
+    color: #333;
+    line-height: 1.4;
+  }
+
+  .task-title:hover {
+    color: #007bff;
+  }
+
+  .task-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
   
   li.completed {
@@ -93,11 +112,14 @@ body {
   }
   
   .priority-badge {
-    font-size: 0.8em;
-    padding: 2px 6px;
+    font-size: 0.75em;
+    padding: 4px 8px;
     border-radius: 3px;
-    margin-left: 10px;
     font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+    line-height: 1;
   }
   
   .priority-high .priority-badge {
@@ -113,5 +135,93 @@ body {
   .priority-low .priority-badge {
     background-color: #28a745;
     color: white;
+  }
+
+  /* Edit Task Styling */
+  .edit-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+  }
+
+  .edit-input {
+    flex: 1;
+    padding: 5px 8px;
+    border: 2px solid #007bff;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+  }
+
+  .edit-input:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  }
+
+  .save-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 0;
+  }
+
+  .save-btn:hover {
+    background-color: #218838;
+  }
+
+  .cancel-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 0;
+  }
+
+  .cancel-btn:hover {
+    background-color: #c82333;
+  }
+
+  .edit-btn {
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #007bff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    line-height: 1;
+  }
+
+  .edit-btn:hover {
+    color: #0056b3;
+  }
+
+  /* Delete button styling */
+  a[href^="/remove/"] {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #dc3545;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    line-height: 1;
+  }
+
+  a[href^="/remove/"]:hover {
+    color: #c82333;
   }
   
