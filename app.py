@@ -8,9 +8,9 @@ from flask_login import LoginManager
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] =  os.env.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] =  os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.env.get('SECRET_KEY')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 db.init_app(app)
 
 login_manager = LoginManager(app)
